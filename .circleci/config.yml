@@ -24,6 +24,10 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install AWSL CLI
+          command: |
+
+      - run:
           name: Create Cloudformation Stack
           command: |
             aws cloudformation deploy \
@@ -54,4 +58,6 @@ workflows:
   ex25-workflow:
     jobs:
       - create_infrastructure
-      - smoke_test
+      - smoke_test:
+          requires:
+            - create_infrastructure
